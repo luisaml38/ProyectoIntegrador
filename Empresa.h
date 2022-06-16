@@ -1,9 +1,9 @@
 // Proyecto utilidades clase empresa
-// Luis Alejo Mu駉z Ledo
+// Luis Alejo Mu帽oz Ledo
 // A01704173
 // 29/05/2022
 //Esta clase define el objeto Empresa que contiene todas las operaciones
-//para dar de alta productos y para calcular las utilidades, esta clase es utilizadaspor la funci髇 principal del programa
+//para dar de alta productos y para calcular las utilidades, esta clase es utilizadaspor la funci贸n principal del programa
 //y es parte del proyecto Utilidades.
 
 #ifndef EMPRESA_H_INCLUDED
@@ -19,7 +19,7 @@
 
 using namespace std;
 
-const int MAX = 1000; //tama駉 de arreglos
+const int MAX = 1000; //tama帽o de arreglos
 
 
 class Empresa {
@@ -38,11 +38,14 @@ class Empresa {
   void crea_ejemplos();
   void muestra_productos();
   void muestra_productos(string tipo);
-  double calc_ventas_mensuales();
-  double calc_ventas_mensuales(string tipo);
-  double calc_impuestos_producto();
-  double calc_costo_fabricacion();
-  double calc_utilidades_totales();
+  int calc_ventas_mensuales();
+  int calc_ventas_mensuales(string tipo);
+  double impuestos_producto();
+  double impuestos_producto(string tipo);
+  int costo_fabricacion();
+  int costo_fabricacion(string tipo);
+  double utilidades_totales();
+  double utilidades:totales(string tipo);
   void agrega_refresco(string nombre, int costofa, int ventasmen, double iva);
   void agrega_botana(string nombre, int costofa, int ventasmen, double iva);
   void agrega_dietetico(string nombre, int costofa, int ventasmen);
@@ -54,13 +57,13 @@ class Empresa {
 //crea_ejemplos genera objetos en producto
 //genera objetos Raefresco Botana y Dietetico, la variable iva esta dada en porcentaje, los objetos
 //se guardan en la varibale de instancia en pro[] (arreglo de productos)
-//para poder hacer pruebas. No usar esta funci髇 si se va a usar el programa
-//en producci髇, ya que los datos son falsos.
+//para poder hacer pruebas. No usar esta funci贸n si se va a usar el programa
+//en producci贸n, ya que los datos son falsos.
 //parametro
 
 void Empresa::crea_ejemplos() {
 
-  //new crea el objeto en tiempo de ejecuci髇 para usar polimorfismo
+  //new crea el objeto en tiempo de ejecuci贸n para usar polimorfismo
   pro[almacen] = new Refresco(almacen, "Limon", 22000, 47000, 0.84);
   almacen++;
   pro[almacen] = new Refresco(almacen, "Sabor Cola", 33000, 68000, 0.84);
@@ -77,15 +80,15 @@ void Empresa::crea_ejemplos() {
   almacen++;
   pro[almacen] = new Dietetico(almacen, "Barras Integrales", 3000, 8000);
   almacen++;
-  pro[almacen] = new Dietetico(almacen, "Bebida con electrolitos", 22000, 48000);
+  pro[almacen] = new Dietetico(almacen, "Bebida con electrolitos", 22000, 49000);
   almacen++;
 }
 
 
 
 //muestra_productos imprime productos
-//utiliza pro[] y el n鷐ero de n髆ina, para recorre todo el
-//arreglo imprimiendo cada uno de los objetos con su m閠odo to_string().
+//utiliza pro[] y el n煤mero de n贸mina, para recorre todo el
+//arreglo imprimiendo cada uno de los objetos con su m茅todo to_string().
 //parametro
 
 void Empresa::muestra_productos() {
@@ -96,9 +99,9 @@ void Empresa::muestra_productos() {
 }
 
 //muestra_productos de tipo string imprime empleados que coinciden con tipo
-//utiliza el arreglo pro[] y el n鷐ero de almacen, que todo el
+//utiliza el arreglo pro[] y el n煤mero de almacen, que todo el
 //arreglo imprimiendo cada uno de los objetos  que coinciden con el
-//string tipo ("refresco, botana o diet閠ico").
+//string tipo ("refresco, botana o diet茅tico").
 //parametro string tipo debe ser: 'refresco', 'botana' o 'dietetico'
 
 
@@ -108,31 +111,26 @@ void Empresa::muestra_productos( string tipo) {
   for (int i = 0; i < almacen; i++) {
     if (pro[i] -> get_tipo() == tipo)
       cout << pro[i] -> to_string();
-  }
+
+}
 }
 
 
 
 
-//calc_ventas_mensuales suma las ventas totales de todos los productos
-//utiliza el arreglo pro[] y el n鷐ero de almacen para que pueda recorrrer todo el
+//ventas_mensuales suma las ventas totales de todos los productos
+//utiliza el arreglo pro[] y el n煤mero de almacen para que pueda recorrrer todo el
 //arreglo acumulando las ventas mensuales de todos los productos.
 //parametro
 //se devuelve la suma de todas las ventas mensuales de los productos
 
-double Empresa::calc_ventas_mensuales() {
+int Empresa::calc_ventas_mensuales() {
+    int total = 0;
+    for (int i = 0; i < almacen; i++){
+        total = total + pro[i] -> ventasmain();
+    }
+    cout << "este es el total de ventas: " << total;
+    return total;
 
-  double total = 0;
-  for (int i = 0; i < almacen; i++)
-    total = total + pro[i] -> utilidades();
-  return total;
-  cout << "este es el total" << total;
-}
-
-
-
-
-
-
-
-#endif // EMPRESA_H_INCLUDED
+  
+  #endif // EMPRESA_H_INCLUDED
