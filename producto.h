@@ -1,5 +1,5 @@
 // Proyecto utilidades clase empresa
-// Luis Alejo Muñoz Ledo
+// Luis Alejo MuÃ±oz Ledo
 // A01704173
 // 29/05/2022
 // Esta clase define objeto de tipo producto que contiene las clases heredadas
@@ -41,7 +41,8 @@ class Producto {
     string get_tipo() {
         return tipo;
   }
-    virtual double utilidades() = 0; //método se sobreescribira
+    virtual double utilidades() = 0;
+    virtual int ventasmain() = 0;  //mÃ©todo se sobreescribira
     virtual string to_string() = 0;
 };
 //Se declara el objeto refresco que se hereda de producto
@@ -69,6 +70,9 @@ class Refresco: public Producto {
   }
   double utilidades() {
     return (ventas_mensuales - costo_fabricacion) * impuestos_hacienda;
+  }
+  int ventasmain() {
+    return ventas_mensuales;
   }
   string to_string();
 };
@@ -102,7 +106,7 @@ class Botana: public Producto {
       double impuestos_hacienda;
 
 
-  //se declaran los metodos públicos
+  //se declaran los metodos pÃºblicos
     public:
 
     Botana(): Producto(0, "", "botana") {};
@@ -112,6 +116,9 @@ class Botana: public Producto {
     double utilidades() {
         return (ventas_mensuales - costo_fabricacion) * impuestos_hacienda;
   }
+    int ventasmain() {
+    return ventas_mensuales;
+    }
   string to_string();
 
 };
@@ -147,7 +154,7 @@ class Dietetico: public Producto {
 
 
 
-  //se declaran los metodos públicos
+  //se declaran los metodos pÃºblicos
     public:
 
     Dietetico(): Producto(0, "", "dietetico") {};
@@ -157,6 +164,9 @@ class Dietetico: public Producto {
     double utilidades() {
     return ventas_mensuales - costo_fabricacion;
   }
+    int ventasmain() {
+    return ventas_mensuales;
+    }
   string to_string();
 
 };
